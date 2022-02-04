@@ -34,7 +34,7 @@ namespace HP.SecureStorage {
                 var checkBackup = true;
                 // if remote exists and backup is different than remote, update backup as safety
                 var updateBackup = true;
-                BingMapsAuthKey = storage.GetValue("BingMapsKey", default(string), checkBackup, updateBackup);
+                BingMapsAuthKey = (string)storage.GetValue("BingMapsKey", default(string));
             });
             
         }
@@ -79,20 +79,20 @@ namespace HP.SecureStorage {
         private void Set(object state) {
             try {
                 if (IsString) {
-                    storage.SetBackupValue(Name, ValueExtensions.CastValue<string>(Value));
+                    storage.SetValue(Name, ValueExtensions.CastValue<string>(Value));
                 }
                 else if (IsLong) {
-                    storage.SetBackupValue(Name, ValueExtensions.CastValue<long>(Value));
+                    storage.SetValue(Name, ValueExtensions.CastValue<long>(Value));
                 }
                 else if (IsDouble) {
-                    storage.SetBackupValue(Name, ValueExtensions.CastValue<double>(Value));
+                    storage.SetValue(Name, ValueExtensions.CastValue<double>(Value));
                 }
                 else if (IsBoolean) {
-                    storage.SetBackupValue(Name, ValueExtensions.CastValue<bool>(Value));
+                    storage.SetValue(Name, ValueExtensions.CastValue<bool>(Value));
                 }
                 else if (IsCustom) {
                     //this is just for testing custom values
-                    storage.SetBackupValue(Name, ValueExtensions.CastValue<CustomValue>(Value));
+                    storage.SetValue(Name, ValueExtensions.CastValue<CustomValue>(Value));
                 }
             }
             catch (Exception ex) {
@@ -125,29 +125,42 @@ namespace HP.SecureStorage {
             Value = string.Empty;
             ErrorText = string.Empty;
             try {
-                if (IsString) {
-                    Value = storage.GetBackupValue(Name, default(string));
-                }
-                else {
-                    var val = default(object);
-                    if (IsLong) {
-                        val = storage.GetBackupValue(Name, default(long));
-                    }
-                    else if (IsDouble) {
-                        val = storage.GetBackupValue(Name, default(double));
-                    }
-                    else if (IsBoolean) {
-                        val = storage.GetBackupValue(Name, default(bool));
-                    }
-                    else if (IsCustom) {
-                        val = storage.GetBackupValue(Name, default(CustomValue));
-                    }
-                    Value = val.ToString();
-                }
+                Value = storage.GetValue(Name).ToString();
+                //if (IsString) {
+                //    Value = storage.GetValue(Name, default(string));
+                //}
+                //else {
+                //    var val = default(object);
+                //    if (IsLong) {
+                //        val = storage.GetValue(Name, default(long));
+                //    }
+                //    else if (IsDouble) {
+                //        val = storage.GetValue(Name, default(double));
+                //    }
+                //    else if (IsBoolean) {
+                //        val = storage.GetValue(Name, default(bool));
+                //    }
+                //    else if (IsCustom) {
+                //        val = storage.GetValue(Name, default(CustomValue));
+                //    }
+                //    else {
+                //        val = storage.GetValue(Name, default(string));
+                //    }
+                //    Value = val.ToString();
+                //}
             }
             catch (Exception ex) {
                 SetError(ex);
             }
+        }
+        #endregion
+
+        #region DeleteCommand
+        private DelegateCommand _DeleteCommand = default;
+        public DelegateCommand DeleteCommand => _DeleteCommand ?? (_DeleteCommand = new DelegateCommand(Delete, ValidateDeleteState));
+        private bool ValidateDeleteState(object state) => true;
+        private void Delete(object state) {
+            storage.RemoveValue(Name);
         }
         #endregion
 

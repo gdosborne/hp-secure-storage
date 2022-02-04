@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HP.Palette.Security")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Secure data routines ({954FEBA9-EAD6-4741-8E5A-35AA1602A5A5})")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HP.Palette.Security")]

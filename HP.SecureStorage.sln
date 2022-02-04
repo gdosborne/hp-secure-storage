@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HP.SecureStorage", "HP.Secu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HP.Palette.Security", "HP.SecureData\HP.Palette.Security.csproj", "{CCAFC09F-3A85-4298-9EB2-1F91D2CE40AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HP.MVVM", "..\..\..\..\..\Git\Repos\common-projects\HP.MVVM\HP.MVVM.csproj", "{BA2474BC-8BC5-43CF-8E73-AB81806FDDE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HP.MVVM", "..\common-projects\HP.MVVM\HP.MVVM.csproj", "{BA2474BC-8BC5-43CF-8E73-AB81806FDDE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HP.Palette.Security.UnitTests", "HP.Palette.Security.UnitTests\HP.Palette.Security.UnitTests.csproj", "{F1201260-51E8-43C8-BFD6-DA7789347F63}"
 EndProject
@@ -26,6 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{81CE1491-8B85-425C-8D7A-8269E48B57C5}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{81CE1491-8B85-425C-8D7A-8269E48B57C5}.Debug|Any CPU.Build.0 = Debug|x86
+		{81CE1491-8B85-425C-8D7A-8269E48B57C5}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{81CE1491-8B85-425C-8D7A-8269E48B57C5}.Debug|ARM.ActiveCfg = Debug|ARM
 		{81CE1491-8B85-425C-8D7A-8269E48B57C5}.Debug|ARM.Build.0 = Debug|ARM
 		{81CE1491-8B85-425C-8D7A-8269E48B57C5}.Debug|ARM.Deploy.0 = Debug|ARM

@@ -17,7 +17,7 @@ namespace HP.Palette.Security.UnitTests {
 
         private void CleanUp(params string[] keys) {
             foreach (var item in keys) {
-                GetStorage().RemoveBackupValueAsync(item);
+                GetStorage().RemoveValue(item);
             }
         }
 
@@ -54,7 +54,7 @@ namespace HP.Palette.Security.UnitTests {
             }
             catch {
                 //backup value read failed
-                store.SetBackupValue(name, key);
+                store.SetValue(name, key);
                 var backupValue = store.GetBackupValue(name, default(string));
                 result = key == backupValue;
             }
@@ -70,7 +70,7 @@ namespace HP.Palette.Security.UnitTests {
             var result = true;
             var name = $"{KeyBase}4";
             try {
-                result = store.BackupValueExists(name);
+                result = store.ValueExists(name);
             }
             catch { result = false; }
             finally {
@@ -85,8 +85,8 @@ namespace HP.Palette.Security.UnitTests {
             var result = true;
             var name = $"{KeyBase}5";
             try {
-                store.SetBackupValue(name, AuthKey);
-                result = store.BackupValueExists(name);
+                store.SetValue(name, AuthKey);
+                result = store.ValueExists(name);
             }
             catch { result = false; }
             finally {
@@ -101,7 +101,7 @@ namespace HP.Palette.Security.UnitTests {
             var result = true;
             var name = $"{KeyBase}6";
             try {
-                store.SetBackupValue(name, AuthKey);
+                store.SetValue(name, AuthKey);
                 var key = store.GetBackupValue(name, default(string));
                 result = key == AuthKey;
             }
@@ -119,7 +119,7 @@ namespace HP.Palette.Security.UnitTests {
             var name = $"{KeyBase}7";
             try {
                 var value = RandomValue(store.MaximumValueLength + 1);
-                store.SetBackupValue(name, value);
+                store.SetValue(name, value);
             }
             catch { result = false; }
             finally {
@@ -135,7 +135,7 @@ namespace HP.Palette.Security.UnitTests {
             var name = $"{KeyBase}8";
             try {
                 var value = RandomValue(store.MaximumValueLength);
-                store.SetBackupValue(name, value);
+                store.SetValue(name, value);
                 var val = store.GetBackupValue(name, default(string));
                 result = val == value;
             }
