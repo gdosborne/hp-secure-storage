@@ -17,7 +17,7 @@ namespace HP.Palette.Security {
             var programDataPath = dataPaths.RoamingAppData;
             var path = Path.Combine(programDataPath, Assembly.GetExecutingAssembly().GetName().Name);
             if (!Directory.Exists(path)) {
-                Directory.CreateDirectory(path);
+                _ = Directory.CreateDirectory(path);
             }
             DataFileName = Path.Combine(path, ".securebin");
         }

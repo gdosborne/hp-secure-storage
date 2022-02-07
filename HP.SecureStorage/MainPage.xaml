@@ -34,18 +34,17 @@
         <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,0,10,10" VerticalAlignment="Top" HorizontalAlignment="Stretch">
             
         </ComboBox>
-        <GridView  Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+        <GridView  Grid.Row="1" Grid.Column="1" Margin="0,0,10,10">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VariableSizedWrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
-            <RadioButton Content="System.String" GroupName="Types" Margin="0,0,5,0" IsChecked="{Binding IsString,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-            <RadioButton Content="System.Int64" GroupName="Types" Margin="0,0,5,0" IsChecked="{Binding IsLong,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-            <RadioButton Content="System.Double" GroupName="Types" Margin="0,0,5,0" IsChecked="{Binding IsDouble,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-            <RadioButton Content="System.Boolean" GroupName="Types" Margin="0,0,5,0" IsChecked="{Binding IsBoolean,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-            <RadioButton Content="HP.SecureStorage.CustomValue" GroupName="Types" Margin="0,0,5,0" IsChecked="{Binding IsCustom,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
-
+            <RadioButton Content="String" GroupName="Types" IsChecked="{Binding IsString,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            <RadioButton Content="Int64" GroupName="Types" IsChecked="{Binding IsLong,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            <RadioButton Content="Double" GroupName="Types" IsChecked="{Binding IsDouble,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            <RadioButton Content="Boolean" GroupName="Types" IsChecked="{Binding IsBoolean,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            <RadioButton Content="CustomValue" GroupName="Types" IsChecked="{Binding IsCustom,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
         </GridView>
 
         <TextBox Name="KeyBox" Grid.Row="2" Grid.Column="1" Margin="0,0,10,10" VerticalAlignment="Top" Text="{Binding Value,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />

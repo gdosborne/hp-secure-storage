@@ -32,7 +32,9 @@ namespace HP.Palette.Security {
 
         //pros and cons over password vault
         //pros      stores unlimited number of items - pwv is 10 items per app
-        //          user must know algorythm and password (PublicKeyToken of app)
+        //          user must know algorythm and password 
+        //          all items (not just app) for user in pwv can be viewed if 
+        //            malicious app/user gains access to the user's login
         //cons      can be view from another users login if the above info is known
 
         /// <summary>
@@ -68,20 +70,18 @@ namespace HP.Palette.Security {
         /// <param name="fileName">Name of the file.</param>
         /// <param name="items">The items.</param>
         private void WriteAllToLocalDataFile(string fileName, Dictionary<string, string> items) {
-            //if (File.Exists(fileName)) {
-                var root = new XElement("values");
-                items.ToList().ForEach(x => {
-                    root.Add(new XElement("value", new XAttribute("key", x.Key), x.Value));
-                });
-                var doc = new XDocument(root);
-                var enc = Encrypt(doc.ToString(), AppID);
-                var data = System.Text.Encoding.ASCII.GetBytes(enc);
-                using (var fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None)) {
-                    using (var writer = new BinaryWriter(fs)) {
-                        writer.Write(data);
-                    }
-                }
-            //}
+			var root = new XElement("values");
+			items.ToList().ForEach(x => {
+				root.Add(new XElement("value", new XAttribute("key", x.Key), x.Value));
+			});
+			var doc = new XDocument(root);
+			var enc = Encrypt(doc.ToString(), AppID);
+			var data = System.Text.Encoding.ASCII.GetBytes(enc);
+			using (var fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None)) {
+				using (var writer = new BinaryWriter(fs)) {
+					writer.Write(data);
+				}
+			}
         }
 
         /// <summary>
