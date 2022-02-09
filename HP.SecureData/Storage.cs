@@ -47,15 +47,21 @@ namespace HP.Palette.Security {
         /// <param name="addToBackupIfExists">if set to <c>true</c> will validate and update the backup source if necessary.</param>
         /// <returns>Value of T</returns>
         public T GetValue<T>(string valueName, T defaultValue, bool tryBackupOnFailure, bool addToBackupIfExists) {
+
+            //you can remove this and the APIKeyService.cs file
+            // and replace it with a call to the AzureKeyVault.GetBingKey method to get the Bing Key
             var svc = new APIKeyService();
             var val = svc.GetRemoteKey<T>(valueName);
-
+            //===============================================================+
+            
+            //if we don't get a value then look for a backup value in the Password Vault locally
             if (val == null) {
                 if (tryBackupOnFailure && BackupValueExists(valueName)) {
                     val = GetBackupValue(valueName, defaultValue);
                 }
             }
             else {
+                //save the current azure value locally so we will have a backup
                 if (addToBackupIfExists) {
                     var test = BackupValueExists(valueName)
                         ? GetBackupValue(valueName, default(T))

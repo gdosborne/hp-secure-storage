@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net;
-using System.IO;
+﻿//to stop using hard-coded key, comment out this compiler directive
+#define UseHardcodedKey
+
 using Newtonsoft.Json.Linq;
+using System;
+using System.IO;
+using System.Net;
 
 namespace HP.Palette.Security {
     internal class APIKeyService {
@@ -21,9 +19,13 @@ namespace HP.Palette.Security {
             var result = default(T);
 
             try {
+                //comment the directive and put the code to 
+                // get Azure Secret (the Bing Auth Key)
+#if UseHardcodedKey
                 var client = new WebClient();
 
                 //just some call to a service right now
+                //this is just to demonstrate an http call
 
                 client.Headers["Content-type"] = "application/json";
 
@@ -42,10 +44,9 @@ namespace HP.Palette.Security {
                     var conditionMatched = res["ConditionMatched"].ToString();
                     var conditionMatchedNum = res["ConditionMatchedNum"].ToString();
 
-                    //this is hard-coded now - some point will call to get
                     result = (T)(object)sampleAuthKey;
                 }
-
+#endif
             }
             catch (Exception ex) {
                 throw;
